@@ -44,8 +44,7 @@ in
     };
   };
 
-  stylix.targets.alacritty.enable = false;
-  programs.alacritty.settings = {
+  programs.kitty.settings = {
     colors = {
       # TODO revisit these color mappings
       # these are just the default provided from stylix

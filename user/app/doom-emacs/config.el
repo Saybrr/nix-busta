@@ -107,7 +107,7 @@
                                   "There is no place like ~"
                                   "~ sweet ~"
                                   "sudo chown -R us ./allyourbase"
-                                  "I’ll tell you a DNS joke but it could take 24 hours for everyone to get it."
+                                  "I'll tell you a DNS joke but it could take 24 hours for everyone to get it."
                                   "I'd tell you a UDP joke, but you might not get it."
                                   "I'll tell you a TCP joke. Do you want to hear it?"))
 
@@ -272,7 +272,7 @@
   `(outline-6 :height 1.1 :foreground ,(nth 1 (nth 16 doom-themes--colors)))
   `(outline-7 :height 1.05 :foreground ,(nth 1 (nth 18 doom-themes--colors)))
   `(outline-8 :height 1.05 :foreground ,(nth 1 (nth 11 doom-themes--colors)))
-  '(variable-pitch :family "Intel One Mono")
+  '(variable-pitch :family "FiraCode")
   `(org-agenda-date :inherit 'unspecified :foreground ,(nth 1 (nth 19 doom-themes--colors)) :weight bold :height 1.1)
   `(org-agenda-date-today :inherit 'unspecified :foreground ,(nth 1 (nth 15 doom-themes--colors)) :weight bold :height 1.1)
   `(org-agenda-date-weekend :inherit 'unspecified :foreground ,(nth 1 (nth 24 doom-themes--colors)) :weight bold :height 1.1)

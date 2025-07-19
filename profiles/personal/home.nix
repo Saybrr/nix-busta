@@ -17,7 +17,7 @@
   home.packages = with pkgs; [
     # Core
     zsh
-    alacritty
+    kitty
     brave
     git
     syncthing

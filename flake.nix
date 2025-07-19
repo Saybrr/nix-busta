@@ -1,38 +1,38 @@
 {
-  description = "Flake of LibrePhoenix";
+  description = "Shouts out to the one time I downloaded 25 pictures of this guy naming each one 'Tha Busta'";
 
   outputs = inputs@{ self, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
         system = "x86_64-linux"; # system arch
-        hostname = "snowfire"; # hostname
-        profile = "personal"; # select a profile defined from my profiles directory
-        timezone = "America/Chicago"; # select timezone
+        hostname = "tha-busta"; # hostname
+        profile = "work"; # select a profile defined from my profiles directory
+        timezone = "America/Los_Angeles"; # select timezone
         locale = "en_US.UTF-8"; # select locale
         bootMode = "uefi"; # uefi or bios
         bootMountPath = "/boot"; # mount path for efi boot partition; only used for uefi boot mode
         grubDevice = ""; # device identifier for grub; only used for legacy (bios) boot mode
-        gpuType = "amd"; # amd, intel or nvidia; only makes some slight mods for amd at the moment
+        gpuType = "nvidia"; # amd, intel or nvidia; only makes some slight mods for amd at the moment
       };
 
       # ----- USER SETTINGS ----- #
       userSettings = rec {
-        username = "emmet"; # username
-        name = "Emmet"; # name/identifier
-        email = "emmet@librephoenix.com"; # email (used for certain configurations)
+        username = "june"; # username
+        name = "Juno"; # name/identifier
+        email = "gjvmayer@gmail.com"; # email (used for certain configurations)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        theme = "io"; # selcted theme from my themes directory (./themes/)
+        theme = "catppuccin-mocha"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         # window manager type (hyprland or x11) translator
         wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
         browser = "qutebrowser"; # Default browser; must select one from ./user/app/browser/
         spawnBrowser = if ((browser == "qutebrowser") && (wm == "hyprland")) then "qutebrowser-hyprprofile" else (if (browser == "qutebrowser") then "qutebrowser --qt-flag enable-gpu-rasterization --qt-flag enable-native-gpu-memory-buffers --qt-flag num-raster-threads=4" else browser); # Browser spawn command must be specail for qb, since it doesn't gpu accelerate by default (why?)
         defaultRoamDir = "Personal.p"; # Default org roam directory relative to ~/Org
-        term = "alacritty"; # Default terminal command;
-        font = "Intel One Mono"; # Selected font
-        fontPkg = pkgs.intel-one-mono; # Font package
-        editor = "neovide"; # Default editor;
+        term = "kitty"; # Default terminal command;
+        font = "FiraCode"; # Selected font
+        fontPkg = (pkgs.nerdfonts.override { fonts = ["FiraCode"]; }); # Font package
+        editor = "nvim"; # Default editor;
         # editor spawning translator
         # generates a command that can be used to spawn editor inside a gui
         # EDITOR and TERM session variables must be set in home.nix or other module
@@ -212,7 +212,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     emacs-pin-nixpkgs.url = "nixpkgs/f72123158996b8d4449de481897d855bc47c7bf6";
     kdenlive-pin-nixpkgs.url = "nixpkgs/cfec6d9203a461d9d698d8a60ef003cac6d0da94";
     nwg-dock-hyprland-pin-nixpkgs.url = "nixpkgs/2098d845d76f8a21ae4fe12ed7c7df49098d3f15";
@@ -220,7 +220,7 @@
     home-manager-unstable.url = "github:nix-community/home-manager/master";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
+    home-manager-stable.url = "github:nix-community/home-manager/release-25.05";
     home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
 
     nix-on-droid = {

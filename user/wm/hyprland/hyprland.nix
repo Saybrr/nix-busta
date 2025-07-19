@@ -3,7 +3,6 @@
 in
 {
   imports = [
-    ../../app/terminal/alacritty.nix
     ../../app/terminal/kitty.nix
     (import ../../app/dmenu-scripts/networkmanager-dmenu.nix {
       dmenu_command = "fuzzel -d"; inherit config lib pkgs;
@@ -203,15 +202,15 @@ in
        bind=SUPERSHIFT,8,movetoworkspace,8
        bind=SUPERSHIFT,9,movetoworkspace,9
 
-       bind=SUPER,Z,exec,if hyprctl clients | grep scratch_term; then echo "scratch_term respawn not needed"; else alacritty --class scratch_term; fi
+       bind=SUPER,Z,exec,if hyprctl clients | grep scratch_term; then echo "scratch_term respawn not needed"; else kitty --class scratch_term; fi
        bind=SUPER,Z,togglespecialworkspace,scratch_term
        bind=SUPER,F,exec,if hyprctl clients | grep scratch_ranger; then echo "scratch_ranger respawn not needed"; else kitty --class scratch_ranger -e ranger; fi
        bind=SUPER,F,togglespecialworkspace,scratch_ranger
-       bind=SUPER,N,exec,if hyprctl clients | grep scratch_numbat; then echo "scratch_ranger respawn not needed"; else alacritty --class scratch_numbat -e numbat; fi
+       bind=SUPER,N,exec,if hyprctl clients | grep scratch_numbat; then echo "scratch_ranger respawn not needed"; else kitty --class scratch_numbat -e numbat; fi
        bind=SUPER,N,togglespecialworkspace,scratch_numbat
        bind=SUPER,M,exec,if hyprctl clients | grep lollypop; then echo "scratch_ranger respawn not needed"; else lollypop; fi
        bind=SUPER,M,togglespecialworkspace,scratch_music
-       bind=SUPER,B,exec,if hyprctl clients | grep scratch_btm; then echo "scratch_ranger respawn not needed"; else alacritty --class scratch_btm -e btm; fi
+       bind=SUPER,B,exec,if hyprctl clients | grep scratch_btm; then echo "scratch_ranger respawn not needed"; else kitty --class scratch_btm -e btm; fi
        bind=SUPER,B,togglespecialworkspace,scratch_btm
        bind=SUPER,D,exec,if hyprctl clients | grep Element; then echo "scratch_ranger respawn not needed"; else element-desktop; fi
        bind=SUPER,D,togglespecialworkspace,scratch_element
@@ -279,9 +278,7 @@ in
        windowrulev2 = float,class:^(pokefinder)$
        windowrulev2 = float,class:^(Waydroid)$
 
-       windowrulev2 = float,title:^(Blender Render)$
-       windowrulev2 = size 86% 85%,title:^(Blender Render)$
-       windowrulev2 = center,title:^(Blender Render)$
+
        windowrulev2 = float,class:^(org.inkscape.Inkscape)$
        windowrulev2 = float,class:^(pinta)$
        windowrulev2 = float,class:^(krita)$
@@ -361,7 +358,7 @@ in
          disable_hyprland_logo = true
          mouse_move_enables_dpms = true
          enable_swallow = true
-         swallow_regex = (scratch_term)|(Alacritty)|(kitty)
+         swallow_regex = (scratch_term)|(kitty)
          font_family = '' + userSettings.font + ''
 
        }
@@ -388,7 +385,6 @@ in
   };
 
   home.packages = (with pkgs; [
-    alacritty
     kitty
     feh
     killall
@@ -506,7 +502,7 @@ in
     '')
     (pkgs.writeScriptBin "suspend-unless-render" ''
       #!/bin/sh
-      if pgrep -x nixos-rebuild > /dev/null || pgrep -x home-manager > /dev/null || pgrep -x kdenlive > /dev/null || pgrep -x FL64.exe > /dev/null || pgrep -x blender > /dev/null || pgrep -x flatpak > /dev/null;
+      if pgrep -x nixos-rebuild > /dev/null || pgrep -x home-manager > /dev/null || pgrep -x kdenlive > /dev/null || pgrep -x flatpak > /dev/null;
       then echo "Shouldn't suspend"; sleep 10; else echo "Should suspend"; systemctl suspend; fi
     '')
     ])
@@ -559,7 +555,7 @@ in
   '';
   home.file.".config/nwg-dock-pinned".text = ''
     nwggrid
-    Alacritty
+    kitty
     neovide
     qutebrowser
     brave-browser
@@ -571,8 +567,6 @@ in
     xournalpp
     obs
     kdenlive
-    flstudio
-    blender
     openscad
     Cura
     virt-manager
@@ -1227,7 +1221,7 @@ in
         margin-bottom: 20px
     }
   '';
-  home.file.".config/nwg-launchers/nwggrid/terminal".text = "alacritty -e";
+  home.file.".config/nwg-launchers/nwggrid/terminal".text = "kitty -e";
   home.file.".config/nwg-drawer/drawer.css".text = ''
     window {
         background-color: rgba('' + config.lib.stylix.colors.base00-rgb-r + "," + config.lib.stylix.colors.base00-rgb-g + "," + config.lib.stylix.colors.base00-rgb-b + "," + ''0.55);
@@ -1276,7 +1270,7 @@ in
       font = userSettings.font + ":size=20";
       dpi-aware = "no";
       show-actions = "yes";
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+              terminal = "${pkgs.kitty}/bin/kitty";
     };
     colors = {
       background = config.lib.stylix.colors.base00 + "bf";
